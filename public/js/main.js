@@ -1,18 +1,14 @@
 var socket = io();
-socket.on('image', function(msg, buffer) {
-    var data = new Uint32Array(buffer);
-    var img = new Blob(data, {type: 'image/jpeg'});
-    console.log(msg, img);
+socket.on('image', function(msg) {
+    console.log(msg);
 });
 
 function ScrollHandler(e){
     if(e.deltaY>0){
-        socket.emit('next', true);
-        console.log('next');
+        socket.emit('next', 1);
     }
     else{
-        socket.emit('back', true);
-        console.log('back');
+        socket.emit('back', -1);
     }
 }
 
